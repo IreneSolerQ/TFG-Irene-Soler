@@ -1348,3 +1348,17 @@ homes_resposta <- bbdd%>% filter(Genere_resposta=="M")
 fill_sector_h <- glm(Fills_binari  ~Sector, data=homes_resposta, family=binomial)
 sfill_sector_h <- summary(fill_sector_h)
 
+#7è model: Tipus de propietat segons les hores de benestar
+propietaris<- bbdd %>% filter(Propietaris %in% c("1prop", "+1prop"))
+
+mod7 <- glm(Propietaris ~Hores_benestar, data=propietaris, family=binomial)
+summary(mod7)
+
+prop_dones <- propietaris %>% filter(Genere_resposta=="F")
+mod7_d <- glm(Propietaris ~Hores_benestar, data=prop_dones, family=binomial)
+summary(mod7_d)
+
+prop_homes <- propietaris %>% filter(Genere_resposta=="M")
+mod7_h <- glm(Propietaris ~Hores_benestar, data=prop_homes, family=binomial)
+summary(mod7_h)
+
